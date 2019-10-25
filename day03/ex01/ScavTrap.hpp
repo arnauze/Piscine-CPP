@@ -1,28 +1,24 @@
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-# include <string>
-# include <iostream>
-# include <sstream>
-# include <ctime>
+# include "FragTrap.hpp"
 
-class                   FragTrap {
+class                   ScavTrap {
     public:
-        FragTrap( std::string const & name );
-        FragTrap(void);
-        ~FragTrap( void );
-        FragTrap( FragTrap const & frag );
-        FragTrap        &operator=(FragTrap const & frag);
+        ScavTrap( std::string const & name );
+        ScavTrap(void);
+        ~ScavTrap( void );
+        ScavTrap( ScavTrap const & frag );
+        ScavTrap        &operator=(ScavTrap const & frag);
 
         void            rangedAttack(std::string const & target);
-        void            rangedAttack(FragTrap *ennemy);
+        void            rangedAttack(ScavTrap *ennemy);
         void            meleeAttack(std::string const & target);
-        void            meleeAttack(FragTrap *ennemy);
+        void            meleeAttack(ScavTrap *ennemy);
         void            takeDamage(unsigned int amount);
         void            beRepaired(unsigned int amount);
         void            looseEnergy(unsigned int amount);
-        void            vaulthunter_dot_exe(std::string const & target);
-        void            vaulthunter_dot_exe(FragTrap *target);
+        void            challengeNewcomer(std::string const & target);
 
         int             getHitPoints(void);
         int             getMaxHitPoints(void);
@@ -34,11 +30,11 @@ class                   FragTrap {
         int             getRangedDamage(void);
         int             getArmorReduction(void);
 
-        void            beerThrowing(FragTrap *target);
-        void            taunt(FragTrap *target);
-        void            takesAPeeBreak(FragTrap *target);
-        void            spits(FragTrap *target);
-        void            rpg(FragTrap *target);
+        void            firstChallenge(std::string const & target);
+        void            secondChallenge(std::string const & target);
+        void            thirdChallenge(std::string const & target);
+        void            fourthChallenge(std::string const & target);
+        void            fifthChallenge(std::string const & target);
 
         std::string     appendName(void);
         void            getInfos(void);

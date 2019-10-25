@@ -30,7 +30,6 @@ FragTrap::~FragTrap( void ) {
 }
 
 FragTrap::FragTrap( FragTrap const & frag ) {
-    srand(time(NULL));
     *this = frag;
     std::cout << "My name is " << this->getName() << " how can I help?" << std::endl;
     return ;
@@ -181,7 +180,7 @@ void            FragTrap::vaulthunter_dot_exe(FragTrap *target) {
     };
 
     int x = rand() % 7;
-    (this->*dispatchTable[x].func)(target);    
+    (this->*dispatchTable[x].func)(target);
 }
 
 int             FragTrap::getHitPoints(void) {

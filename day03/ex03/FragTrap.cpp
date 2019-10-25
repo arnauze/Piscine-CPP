@@ -4,13 +4,13 @@ typedef struct {
     void            (FragTrap::*func)(FragTrap *target);
 }                   dispatch_t;
 
-FragTrap::FragTrap(void) : _name("default") {
+FragTrap::FragTrap(void) : ClapTrap("default") {
     srand(time(NULL));
     std::cout << "My name is " << this->_name << " how can I help?" << std::endl;
     return ;
 }
 
-FragTrap::FragTrap( std::string const & name ) : _name(name) {
+FragTrap::FragTrap( std::string const & name ) : ClapTrap(name) {
     std::cout << "My name is " << name << " how can I help?" << std::endl;
     srand(time(NULL));
     this->_hitPoints = 100;
@@ -29,15 +29,14 @@ FragTrap::~FragTrap( void ) {
     return ;
 }
 
-FragTrap::FragTrap( FragTrap const & frag ) {
-    srand(time(NULL));
+FragTrap::FragTrap( FragTrap const & frag ) : ClapTrap(frag) {
     *this = frag;
     std::cout << "My name is " << this->getName() << " how can I help?" << std::endl;
     return ;
 }
 
 FragTrap &      FragTrap::operator=(FragTrap const & frag) {
-    std::cout << "My name is " << frag._name << " how can I help?" << std::endl;
+    std::cout << "Operator overload = called" << std::endl;
     this->_name = frag._name;
     this->_hitPoints = frag._hitPoints;
     this->_maxHitPoints = frag._maxHitPoints;
@@ -50,14 +49,6 @@ FragTrap &      FragTrap::operator=(FragTrap const & frag) {
     return *this;
 }
 
-void            FragTrap::rangedAttack(std::string const & target) {
-    if (this->_energyPoints < 25) {
-        std::cout << this->appendName() << std::endl << "I don't have enough energy to do that." << std::endl;
-    } else {    
-        std::cout << "FR4G-TPt " << this->getName() << " attacks " << target << " at range, causing " << this->getRangedDamage() - this->getArmorReduction() << " points of damage!" << std::endl;
-    }
-}
-
 void            FragTrap::rangedAttack(FragTrap *ennemy) {
     if (this->_energyPoints < 25) {
         std::cout << this->appendName() << std::endl << "I don't have enough energy to do that." << std::endl;
@@ -65,14 +56,6 @@ void            FragTrap::rangedAttack(FragTrap *ennemy) {
         std::cout << "FR4G-TPt " << this->getName() << " attacks " << ennemy->getName() << " at range, causing " << this->getRangedDamage() - this->getArmorReduction() << " points of damage!" << std::endl;
         ennemy->takeDamage(this->getRangedDamage());
         this->looseEnergy(25);
-    }
-}
-
-void            FragTrap::meleeAttack(std::string const & target) {
-    if (this->_energyPoints < 25) {
-        std::cout << this->appendName() << std::endl << "I don't have enough energy to do that." << std::endl;
-    } else {   
-        std::cout << "FR4G-TPt " << this->getName() << " attacks " << target << " at melee, causing " << this->getMeleeDamage() - this->getArmorReduction() << " points of damage!" << std::endl;
     }
 }
 
@@ -84,33 +67,6 @@ void            FragTrap::meleeAttack(FragTrap  *ennemy) {
         ennemy->takeDamage(this->getMeleeDamage());
         this->looseEnergy(25);
     }
-}
-
-std::string     FragTrap::appendName(void) {
-    std::stringstream oss;
-    oss << this->getName() << ": ";
-    return oss.str();
-}
-
-void            FragTrap::takeDamage(unsigned int amount) {
-    if ((int)(this->_hitPoints - (amount - this->getArmorReduction())) < 0)
-        this->_hitPoints = 0;
-    else
-        this->_hitPoints -= (amount - this->getArmorReduction());
-}
-
-void            FragTrap::beRepaired(unsigned int amount) {
-    if ((int)(this->_hitPoints + amount) > 100)
-        this->_hitPoints = 100;
-    else
-        this->_hitPoints += amount;
-}
-
-void            FragTrap::looseEnergy(unsigned int amount) {
-    if ((int)(this->_energyPoints - amount) < 0)
-        this->_energyPoints = 0;
-    else
-        this->_energyPoints -= amount;
 }
 
 void            FragTrap::beerThrowing(FragTrap *target) {
@@ -184,48 +140,6 @@ void            FragTrap::vaulthunter_dot_exe(FragTrap *target) {
     (this->*dispatchTable[x].func)(target);    
 }
 
-int             FragTrap::getHitPoints(void) {
-    return this->_hitPoints;
-}
-
-int             FragTrap::getMaxHitPoints(void) {
-    return this->_maxHitPoints;
-}
-
-int             FragTrap::getEnergyPoints(void) {
-    return this->_energyPoints;
-}
-
-int             FragTrap::getMaxEnergyPoints(void) {
-    return this->_maxEnergyPoints;
-}
-
-int             FragTrap::getLevel(void) {
-    return this->_level;
-}
-
-std::string     FragTrap::getName(void) {
-    return this->_name;
-}
-
-int             FragTrap::getMeleeDamage(void) {
-    return this->_meleeDamage;
-}
-
-int             FragTrap::getRangedDamage(void) {
-    return this->_rangedDamage;
-}
-
-int             FragTrap::getArmorReduction(void) {
-    return this->_armorReduction;
-}
-
-void            FragTrap::getInfos(void) {
-    std::cout << std::endl
-    << "FragTap called " << this->getName() << std::endl
-    << "HP: " << this->getHitPoints() << std::endl
-    << "Energy: " << this->getEnergyPoints() << std::endl
-    << "Level: " << this->getLevel() << std::endl
-    << "Armor reduction: " << this->getArmorReduction() << std::endl
-    << std::endl;
+std::string     FragTrap::getType(void) const {
+    return std::string("FragTrap");
 }

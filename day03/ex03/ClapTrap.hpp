@@ -1,28 +1,24 @@
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 # include <string>
 # include <iostream>
 # include <sstream>
 # include <ctime>
 
-class                   FragTrap {
+class                   ClapTrap {
     public:
-        FragTrap( std::string const & name );
-        FragTrap(void);
-        ~FragTrap( void );
-        FragTrap( FragTrap const & frag );
-        FragTrap        &operator=(FragTrap const & frag);
+        ClapTrap ( std::string const & name );
+        ClapTrap( void );
+        ~ClapTrap ( void );
+        ClapTrap ( ClapTrap const & frag );
+        ClapTrap        &operator=(ClapTrap const & frag);
 
         void            rangedAttack(std::string const & target);
-        void            rangedAttack(FragTrap *ennemy);
         void            meleeAttack(std::string const & target);
-        void            meleeAttack(FragTrap *ennemy);
         void            takeDamage(unsigned int amount);
         void            beRepaired(unsigned int amount);
         void            looseEnergy(unsigned int amount);
-        void            vaulthunter_dot_exe(std::string const & target);
-        void            vaulthunter_dot_exe(FragTrap *target);
 
         int             getHitPoints(void);
         int             getMaxHitPoints(void);
@@ -34,16 +30,12 @@ class                   FragTrap {
         int             getRangedDamage(void);
         int             getArmorReduction(void);
 
-        void            beerThrowing(FragTrap *target);
-        void            taunt(FragTrap *target);
-        void            takesAPeeBreak(FragTrap *target);
-        void            spits(FragTrap *target);
-        void            rpg(FragTrap *target);
-
         std::string     appendName(void);
         void            getInfos(void);
 
-    private:
+        virtual std::string    getType(void) const = 0;
+
+    protected:
         int             _hitPoints;
         int             _maxHitPoints;
         int             _energyPoints;
