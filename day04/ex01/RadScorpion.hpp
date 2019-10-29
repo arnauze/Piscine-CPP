@@ -4,10 +4,10 @@
 # include "header.hpp"
 # include "Enemy.hpp"
 
-class        RadScorpion : public Enemy {
+class        RadScorpion : virtual public Enemy {
 
     public:
-        RadScorpion(int hp);
+        RadScorpion(void);
         ~RadScorpion( void );
         RadScorpion( RadScorpion const & scorpion );
         RadScorpion &operator=(RadScorpion const & scorpion);

@@ -16,7 +16,7 @@ PowerFist                 &PowerFist::operator=( PowerFist const & pFist ) {
     return *this;
 }
 
-void                        PowerFist::attack(void) {
+void                        PowerFist::attack(void) const {
     std::cout << "* pschhh... SBAM! *" << std::endl;
     return ;
 }

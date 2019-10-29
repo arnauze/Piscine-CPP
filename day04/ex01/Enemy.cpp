@@ -2,7 +2,7 @@
 
 Enemy::Enemy(void) { return ; }
 
-Enemy::Enemy(int hp, std::string const & type) : _hp(hp), _type(type) { return ; }
+Enemy::Enemy(int hp, std::string const & type) : _type(type), _hp(hp) { return ; }
 
 Enemy::~Enemy(void) { return ; }
 

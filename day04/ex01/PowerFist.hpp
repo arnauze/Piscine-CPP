@@ -4,7 +4,7 @@
 # include "header.hpp"
 # include "AWeapon.hpp"
 
-class        PowerFist : public AWeapon {
+class        PowerFist : virtual public AWeapon {
 
     public:
         PowerFist(void);
@@ -12,7 +12,7 @@ class        PowerFist : public AWeapon {
         PowerFist( PowerFist const & pRifle );
         PowerFist &operator=(PowerFist const & pRifle);
 
-        void        attack(void);
+        void        attack(void) const;
 
 };
 

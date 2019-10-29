@@ -4,7 +4,7 @@
 # include "header.hpp"
 # include "AWeapon.hpp"
 
-class        PlasmaRifle : public AWeapon {
+class        PlasmaRifle : virtual public AWeapon {
 
     public:
         PlasmaRifle(void);
@@ -12,7 +12,7 @@ class        PlasmaRifle : public AWeapon {
         PlasmaRifle( PlasmaRifle const & pRifle );
         PlasmaRifle &operator=(PlasmaRifle const & pRifle);
 
-        void        attack(void);
+        void        attack(void) const;
 
 };
 

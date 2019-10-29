@@ -4,7 +4,7 @@
 # include "header.hpp"
 # include "Enemy.hpp"
 
-class        SuperMutant : public Enemy {
+class        SuperMutant : public virtual Enemy {
 
     public:
         SuperMutant(int hp);
