@@ -1,34 +1,33 @@
 # include "Intern.hpp"
+# include "OfficeBlock.hpp"
 
 int main(void) {
 
-    Intern          someRandomIntern;
-    Bureaucrat      arnaud("Arnaud", 1);
-    Form            *rrf;
-    Form            *rrf2;
+    // Intern          someRandomIntern;
+    // Bureaucrat      arnaud("Arnaud", 1);
+    // Bureaucrat      felix("Felix", 1);
+    // OfficeBlock     office(someRandomIntern, arnaud, felix);
 
-    rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-    rrf2 = someRandomIntern.makeForm("presidential pardon", "Armand");
-    std::cout << std::endl;
+    // office.doBureaucracy("presidential pardon", "Julie");
 
-    std::cout << *rrf;
-    std::cout << *rrf2;
-    std::cout << std::endl;
+    try {
 
-    rrf->beSigned(arnaud);
-    rrf2->beSigned(arnaud);
-    std::cout << std::endl;
+        Intern          someRandomIntern;
+        Bureaucrat      arnaud("Arnaud", 100);
+        Bureaucrat      felix("Felix", 1);
+        OfficeBlock     office;
 
-    std::cout << *rrf;
-    std::cout << *rrf2;
+        office.doBureaucracy("presidential pardon", "Julie");
 
-    std::cout << std::endl;
+        office.setIntern(someRandomIntern);
+        office.setSBureaucrat(arnaud);
+        office.setEBureaucrat(felix);
 
-    if (arnaud.executeForm(*rrf))
-        rrf->execute(arnaud);
-    std::cout << std::endl;
-    if (arnaud.executeForm(*rrf2))
-        rrf2->execute(arnaud);
+        office.doBureaucracy("shruberry creation", "Julie");
+
+    } catch(std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
 
     return (0);
 
