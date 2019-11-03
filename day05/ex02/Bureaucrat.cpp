@@ -95,6 +95,7 @@ Bureaucrat::GradeTooHighException::GradeTooHighException(Bureaucrat::GradeTooHig
 }
 
 Bureaucrat::GradeTooHighException &Bureaucrat::GradeTooHighException::operator=(Bureaucrat::GradeTooHighException const & e) {
+    (void)e;
     return *this;
 }
 
@@ -116,6 +117,7 @@ Bureaucrat::GradeTooLowException::GradeTooLowException(Bureaucrat::GradeTooLowEx
 }
 
 Bureaucrat::GradeTooLowException &Bureaucrat::GradeTooLowException::operator=(Bureaucrat::GradeTooLowException const & e) {
+    (void)e;
     return *this;
 }
 

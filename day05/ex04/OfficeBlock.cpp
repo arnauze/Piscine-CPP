@@ -6,9 +6,9 @@ OfficeBlock::OfficeBlock(Intern *intern, Bureaucrat *SBureaucrat, Bureaucrat *EB
 
 OfficeBlock::~OfficeBlock(void) { return ; }
 
-OfficeBlock::OfficeBlock(OfficeBlock const & office) { return ; }
+OfficeBlock::OfficeBlock(OfficeBlock const & office) { (void)office; return ; }
 
-OfficeBlock     &OfficeBlock::operator=(OfficeBlock const & office) { return *this; }
+OfficeBlock     &OfficeBlock::operator=(OfficeBlock const & office) { (void)office; return *this; }
 
 void            OfficeBlock::setIntern(Intern &intern) {
     this->intern = &intern;

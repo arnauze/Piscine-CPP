@@ -17,25 +17,25 @@ Form::~Form(void) throw() {
     return ;
 }
 
-Form::Form(Form const & form) : sign_min(form.sign_min), ex_min(form.ex_min), name(form.name), is_signed(form.is_signed) {
+Form::Form(Form const & form) : name(form.name), is_signed(form.is_signed), sign_min(form.sign_min), ex_min(form.ex_min) {
     *this = form;
     return ;
 }
 
-Form                      &Form::operator=(Form const & form) {
+Form                        &Form::operator=(Form const & form) {
     this->is_signed = form.is_signed;
     return *this;
 }
 
-std::string const           Form::getName(void) const {
+std::string                 Form::getName(void) const {
     return this->name;
 }
 
-int const                   Form::getMinSign(void) const {
+int                         Form::getMinSign(void) const {
     return this->sign_min;
 }
 
-int const                   Form::getMinEx(void) const {
+int                         Form::getMinEx(void) const {
     return this->ex_min;
 }
 

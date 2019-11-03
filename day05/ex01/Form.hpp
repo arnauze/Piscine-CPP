@@ -33,9 +33,9 @@ class                       Form {
         Form(Form const & form);
         Form &operator=(Form const & form);
 
-        std::string const   getName(void) const;
-        int const           getMinSign(void) const;
-        int const           getMinEx(void) const;
+        std::string         getName(void) const;
+        int                 getMinSign(void) const;
+        int                 getMinEx(void) const;
         bool                isSigned(void) const;
         void                beSigned(Bureaucrat & bureaucrat);
 
